@@ -27,17 +27,17 @@ public class MinHeap {
 	
 	private int getParent(int i)
 	{
-		return (i/2);
+		return (int) Math.floor( i/2 );
 	}
 	
 	private int getLeftChild(int i)
 	{
-		return (2*i);
+		return (int) Math.floor( 2*i );
 	}
 	
 	private int getRightChild(int i)
 	{
-		return (2*i+1);
+		return (int) Math.floor( 2*i+1 );
 	}
 	
 	private Node getNode(int i)
