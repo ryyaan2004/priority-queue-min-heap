@@ -1,6 +1,5 @@
 package org.ryyaan2004.datastructure;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -69,5 +68,23 @@ public class NodeTest {
 		Collections.sort(nodeList);
 		Assert.assertEquals("The expected node at the 0th position was p", p, nodeList.get(0));
 		Assert.assertEquals("The last node was expected to be r", r, nodeList.get(2));
+	}
+	
+	@Test
+	public void smallerNodeLessThanLargerNode()
+	{
+		Node p = new Node(1);
+		Node r = new Node(3);
+		
+		Assert.assertTrue("The smaller node does not evaluate as smaller: ", p.lessThan(r));
+	}
+	
+	@Test 
+	public void largerNodeLessThanSmallerNode()
+	{
+		Node p = new Node(1);
+		Node r = new Node(3);
+		
+		Assert.assertFalse("The larger node evaluates as smaller: ", r.lessThan(p));
 	}
 }

@@ -18,6 +18,11 @@ public class Node implements Comparable<Node> {
 	{
 		this.value = Integer.valueOf(i);
 	}
+	
+	public boolean lessThan(Node other)
+	{
+		return this.getValue() < other.getValue();
+	}
 
 	public int compareTo(Node otherNode) {
 		return this.value.compareTo(otherNode.getValue());
