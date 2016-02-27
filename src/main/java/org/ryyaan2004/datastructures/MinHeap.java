@@ -6,6 +6,11 @@ public class MinHeap {
 
 	Node[] nodes;
 	
+	/**
+	 * Build-Min-Heap(A)
+	 * 
+	 * @param initialValues
+	 */
 	public MinHeap(int[] initialValues)
 	{
 		nodes = new Node[initialValues.length + 1];
@@ -14,7 +19,10 @@ public class MinHeap {
 			nodes[i] = new Node(initialValues[i - 1]);
 		}
 		
-		minHeapify(1);
+		for ( int i = (initialValues.length/2); i >= 1; i-- )
+		{
+			minHeapify(i);
+		}
 	}
 	
 	public int getRoot()
@@ -104,7 +112,7 @@ public class MinHeap {
 		}
 		
 		if ( rightChildIndex <= heapSize() &&
-				getNode(rightChildIndex).lessThan(getNode(nodeIndex)) )
+				getNode(rightChildIndex).lessThan(getNode(smallestIndex)) )//nodeIndex)) )
 		{
 			smallestIndex = rightChildIndex;
 		}
