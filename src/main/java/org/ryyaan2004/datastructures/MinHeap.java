@@ -8,21 +8,23 @@ public class MinHeap {
 	
 	public MinHeap(int[] initialValues)
 	{
-		nodes = new Node[initialValues.length];
-		for ( int i = 0; i < initialValues.length; i++ )
+		nodes = new Node[initialValues.length + 1];
+		for ( int i = 1; i <= initialValues.length; i++ )
 		{
-			nodes[i] = new Node(initialValues[i]);
+			nodes[i] = new Node(initialValues[i - 1]);
 		}
+		
+		minHeapify(1);
 	}
 	
 	public int getRoot()
 	{
-		return nodes[0].getValue();
+		return nodes[1].getValue();
 	}
 	
 	public int heapSize()
 	{
-		return nodes.length;
+		return nodes.length - 1;
 	}
 	
 	private int getParent(int i)
