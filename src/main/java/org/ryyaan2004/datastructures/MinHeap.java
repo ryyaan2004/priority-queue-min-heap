@@ -1,10 +1,12 @@
 package org.ryyaan2004.datastructures;
 
 import java.lang.Math;
+import java.util.Arrays;
 
 public class MinHeap {
 
 	Node[] nodes;
+	int heapSize;
 	
 	/**
 	 * Build-Min-Heap(A)
@@ -18,11 +20,23 @@ public class MinHeap {
 		{
 			nodes[i] = new Node(initialValues[i - 1]);
 		}
-		
+
+		this.setHeapSize(this.heapSize());
+
 		for ( int i = (initialValues.length/2); i >= 1; i-- )
 		{
 			minHeapify(i);
 		}
+	}
+	
+	private void setHeapSize(int i)
+	{
+		this.heapSize = i;
+	}
+	
+	private int getHeapSize()
+	{
+		return this.heapSize;
 	}
 	
 	public int getRoot()
@@ -53,6 +67,11 @@ public class MinHeap {
 	private Node getNode(int i)
 	{
 		return nodes[i];
+	}
+	
+	public int getValue(int i)
+	{
+		return getNode(i).getValue();
 	}
 	
 	int getHeight()
@@ -101,7 +120,7 @@ public class MinHeap {
 		 * find the smallest, it should be at "top" 
 		 * or root of our 3 node "tree" 
 		 */
-		if ( leftChildIndex <= heapSize() &&
+		if ( leftChildIndex <= getHeapSize() &&
 				getNode(leftChildIndex).lessThan(getNode(nodeIndex)) )
 		{
 			smallestIndex = leftChildIndex;
@@ -111,7 +130,7 @@ public class MinHeap {
 			smallestIndex = nodeIndex;
 		}
 		
-		if ( rightChildIndex <= heapSize() &&
+		if ( rightChildIndex <= getHeapSize() &&
 				getNode(rightChildIndex).lessThan(getNode(smallestIndex)) )//nodeIndex)) )
 		{
 			smallestIndex = rightChildIndex;
@@ -125,5 +144,30 @@ public class MinHeap {
 			swap(nodeIndex, smallestIndex);
 			minHeapify(smallestIndex);
 		}
+	}
+	
+	/**
+	 * HEAPSORT(A) would be the standard signature but instead
+	 * we're operating on our own array. After this method the
+	 * underlying array will be sorted in descending order
+	 * 
+	 * @return
+	 */
+	public void heapSort()
+	{
+		int MIN_INDEX = 1;
+		for ( int i = getHeapSize(); i > 1; i-- )
+		{
+			swap(MIN_INDEX, i);
+			setHeapSize(getHeapSize() - 1) ;
+			minHeapify(MIN_INDEX);
+		}
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("MinHeap [nodes=").append(Arrays.toString(this.nodes)).append("]");
+		return builder.toString();
 	}
 }
