@@ -29,12 +29,23 @@ public class MinHeap {
 		}
 	}
 	
-	private void setHeapSize(int i)
+	public void appendNode(Node nodeToAppend)
+	{
+		Node[] newNodeArray = new Node[nodes.length + 1];
+		for ( int i = 1; i < nodes.length; i++ )
+		{
+			newNodeArray[i] = nodes[i];
+		}
+		newNodeArray[nodes.length] = nodeToAppend;
+		this.nodes = newNodeArray;
+	}
+	
+	protected void setHeapSize(int i)
 	{
 		this.heapSize = i;
 	}
 	
-	private int getHeapSize()
+	protected int getHeapSize()
 	{
 		return this.heapSize;
 	}
@@ -49,22 +60,22 @@ public class MinHeap {
 		return nodes.length - 1;
 	}
 	
-	private int getParent(int i)
+	protected int getParent(int i)
 	{
 		return (int) Math.floor( i/2 );
 	}
 	
-	private int getLeftChild(int i)
+	protected int getLeftChild(int i)
 	{
 		return (int) Math.floor( 2*i );
 	}
 	
-	private int getRightChild(int i)
+	protected int getRightChild(int i)
 	{
 		return (int) Math.floor( 2*i+1 );
 	}
 	
-	private Node getNode(int i)
+	protected Node getNode(int i)
 	{
 		return nodes[i];
 	}

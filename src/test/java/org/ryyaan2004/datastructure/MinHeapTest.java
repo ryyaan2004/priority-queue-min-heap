@@ -2,6 +2,7 @@ package org.ryyaan2004.datastructure;
 
 import org.junit.Test;
 import org.ryyaan2004.datastructures.MinHeap;
+import org.ryyaan2004.datastructures.Node;
 
 import java.util.Arrays;
 import java.util.List;
@@ -47,5 +48,17 @@ public class MinHeapTest {
 		Assert.assertEquals( "The returned last value in the MinHeap is not expected, implying incorrect ordering: "
 						   , 1 
 						   , h.getValue(9));
+	}
+	
+	@Test
+	public void append_a_node()
+	{
+		int[] arr = { 1, 2, 3, 4 };
+		MinHeap h = new MinHeap(arr);
+		Node n = new Node(5);
+		h.appendNode(n);
+		Assert.assertEquals( "The returned value was not expected, implying the append method doesn't work"
+						   , 5
+						   , h.getValue(5) );
 	}
 }
